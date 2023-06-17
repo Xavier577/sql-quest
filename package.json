@@ -1,0 +1,34 @@
+{
+  "name": "sql-quest",
+  "version": "0.0.1",
+  "description": "the enchanting JavaScript library that transforms the world of SQL",
+  "main": "lib/index",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "sqlQuest",
+    "SqlQuest",
+    "sql-quest",
+    "sql_quest",
+    "sql"
+  ],
+  "bugs": {
+    "url": "https://github.com/Bitreel-Hq/sql-quest/issues"
+  },
+  "homepage": "https://github.com/Bitreel-Hq/sql-quest#readme",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "moment": "^2.29.4",
+    "pg-promise": "^11.5.0",
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.38"
+  }
+}
