@@ -1,7 +1,13 @@
 {
-  "name": "sql-quest",
+  "name": "@bitreel/sql-quest",
   "version": "0.0.1",
   "description": "the enchanting JavaScript library that transforms the world of SQL",
+  "author": "Mitreel",
+  "url": "https://github.com/Bitreel-Hq/sql-quest",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bitreel-Hq/sql-quest.git"
+  },
   "main": "lib/index",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -30,5 +36,9 @@
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.38"
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
   }
 }
