@@ -50,6 +50,14 @@ interface SqlQuestOptions {
 
 export interface SqlQuest {
     any(query: string, payload: any[], correlationId: any): Promise<any>
+
+    one(query: string, payload?: any[], correlationId?: string): Promise<any>;
+
+    oneOrNone(query: string, payload?: any[], correlationId?: string): Promise<any>;
+
+    none(query: string, payload?: any[], correlationId?: string): Promise<any>;
+
+    manyOrNone(query: string, payload?: any[], correlationId?: string): Promise<any>;
 }
 
 // Initialize postgres database
@@ -79,8 +87,7 @@ class SqlQuestImpl implements SqlQuest {
                 this.maxSqlExecTime = options.MAX_SQL_EXEC_TIME
             }
 
-            const conn = pg(connectionOptions);
-            this.db = conn;
+            this.db = pg(connectionOptions);
 
             // don't implement this just assign same name
             this.tx = this.db.tx;
@@ -265,7 +272,7 @@ class SqlQuestImpl implements SqlQuest {
 }
 
 
-export default function sqlQuestFactory(options: SqlQuestOptions) {
+export default function sqlQuestFactory(options: SqlQuestOptions): SqlQuest {
 
     if (options.env == null) {
         options.env = 'development'
