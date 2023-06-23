@@ -14,6 +14,12 @@ const DATABASE_URL = String(process.env.DATABASE_URL)
 
 const sqlQuest = sqlQuestFactory({ databaseUrl: DATABASE_URL})
 
+sqlQuest.connect().catch((err) => {
+    console.error(err)
+    process.exit(1)
+})
+
+
 ;(async function () {
 
   const result = await sqlQuest.any(`SELECT * FROM users;`)
