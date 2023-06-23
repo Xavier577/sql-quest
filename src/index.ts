@@ -48,10 +48,10 @@ interface SqlQuestOptions {
 }
 
 
-export type NamedParamsObj = { [name: string]: any}
+export type NamedParamsObj = { [name: string]: any }
 
 export interface SqlQuest {
-    any(query: string, payload: any[] | NamedParamsObj, correlationId: any): Promise<any>
+    any(query: string, payload?: any[] | NamedParamsObj, correlationId?: any): Promise<any>
 
     one(query: string, payload?: any[] | NamedParamsObj, correlationId?: string): Promise<any>;
 
@@ -90,6 +90,15 @@ class SqlQuestImpl implements SqlQuest {
             }
 
             this.db = pg(connectionOptions);
+
+            // attempt to connect
+            this.db.connect()
+                .then(function (obj: any) {
+                    obj.done(); // success, release connection;
+                })
+                .catch(function (error: any) {
+                    throw error
+                });
 
             // don't implement this just assign same name
             this.tx = this.db.tx;
@@ -188,7 +197,7 @@ class SqlQuestImpl implements SqlQuest {
         }
     }
 
-    async none(query: string, payload?: any[] | {[name: string]: any}, correlationId?: string) {
+    async none(query: string, payload?: any[] | { [name: string]: any }, correlationId?: string) {
         try {
             const queryLength = query.length;
             const logSql = `DB::ANY ${query.substr(0, queryLength > 200 ? 200 : queryLength)
