@@ -48,16 +48,18 @@ interface SqlQuestOptions {
 }
 
 
+export type NamedParamsObj = { [name: string]: any}
+
 export interface SqlQuest {
-    any(query: string, payload: any[], correlationId: any): Promise<any>
+    any(query: string, payload: any[] | NamedParamsObj, correlationId: any): Promise<any>
 
-    one(query: string, payload?: any[], correlationId?: string): Promise<any>;
+    one(query: string, payload?: any[] | NamedParamsObj, correlationId?: string): Promise<any>;
 
-    oneOrNone(query: string, payload?: any[], correlationId?: string): Promise<any>;
+    oneOrNone(query: string, payload?: any[] | NamedParamsObj, correlationId?: string): Promise<any>;
 
-    none(query: string, payload?: any[], correlationId?: string): Promise<any>;
+    none(query: string, payload?: any[] | NamedParamsObj, correlationId?: string): Promise<any>;
 
-    manyOrNone(query: string, payload?: any[], correlationId?: string): Promise<any>;
+    manyOrNone(query: string, payload?: any[] | NamedParamsObj, correlationId?: string): Promise<any>;
 }
 
 // Initialize postgres database
@@ -97,7 +99,7 @@ class SqlQuestImpl implements SqlQuest {
         return instance;
     }
 
-    async any(query: string, payload?: any[], correlationId?: string) {
+    async any(query: string, payload?: any[] | NamedParamsObj, correlationId?: string) {
         try {
             const queryLength = query.length;
             const logSql = `DB::ANY ${query.substr(0, queryLength > 200 ? 200 : queryLength)
@@ -127,7 +129,7 @@ class SqlQuestImpl implements SqlQuest {
         }
     }
 
-    async one(query: string, payload?: any[], correlationId?: string) {
+    async one(query: string, payload?: any[] | NamedParamsObj, correlationId?: string) {
         try {
             const queryLength = query.length;
             const logSql = `DB::ANY ${query.substr(0, queryLength > 200 ? 200 : queryLength)
@@ -156,7 +158,7 @@ class SqlQuestImpl implements SqlQuest {
         }
     }
 
-    async oneOrNone(query: string, payload?: any[], correlationId?: string) {
+    async oneOrNone(query: string, payload?: any[] | NamedParamsObj, correlationId?: string) {
         try {
             const queryLength = query.length;
             const logSql = `DB::ANY ${query.substr(0, queryLength > 200 ? 200 : queryLength)
@@ -186,7 +188,7 @@ class SqlQuestImpl implements SqlQuest {
         }
     }
 
-    async none(query: string, payload?: any[], correlationId?: string) {
+    async none(query: string, payload?: any[] | {[name: string]: any}, correlationId?: string) {
         try {
             const queryLength = query.length;
             const logSql = `DB::ANY ${query.substr(0, queryLength > 200 ? 200 : queryLength)
@@ -215,7 +217,7 @@ class SqlQuestImpl implements SqlQuest {
         }
     }
 
-    async manyOrNone(query: string, payload?: any[], correlationId?: string) {
+    async manyOrNone(query: string, payload?: any[] | { [name: string]: any }, correlationId?: string) {
         try {
             const queryLength = query.length;
             const logSql = `DB::ANY ${query.substr(0, queryLength > 200 ? 200 : queryLength)
