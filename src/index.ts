@@ -51,6 +51,7 @@ interface SqlQuestOptions {
 export type NamedParamsObj = { [name: string]: any }
 
 export interface SqlQuest {
+    tx: any;
     connect(): Promise<void>
 
     any(query: string, payload?: any[] | NamedParamsObj, correlationId?: any): Promise<any>
@@ -292,7 +293,8 @@ export default function sqlQuestFactory(options: SqlQuestOptions): SqlQuest {
     }
 
     SqlQuestImpl.setEnvironment(options.env)
-
-    return new SqlQuestImpl(options)
+    const sqlQuest = new SqlQuestImpl(options)
+    
+    return sqlQuest
 }
 

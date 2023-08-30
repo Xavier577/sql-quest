@@ -23,6 +23,7 @@ sqlQuest.connect().catch((err) => {
 ;(async function () {
 
   const result = await sqlQuest.any(`SELECT * FROM users;`)
+  await sqlQuest.tx.one('SELECT * FROM users;')
 
    console.log(result)
 
