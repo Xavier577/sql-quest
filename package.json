@@ -1,12 +1,12 @@
 {
-  "name": "@bitreel/sql-quest",
-  "version": "0.0.7",
+  "name": "sql-quest",
+  "version": "0.0.1",
   "description": "the enchanting JavaScript library that transforms the world of SQL",
   "author": "Mitreel",
-  "url": "https://github.com/Bitreel-Hq/sql-quest",
+  "url": "https://github.com/Xavier577/sql-quest",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bitreel-Hq/sql-quest.git"
+    "url": "git+https://github.com/Xavier577/sql-quest.git"
   },
   "main": "lib/index",
   "types": "lib/index.d.ts",
@@ -22,9 +22,9 @@
     "sql"
   ],
   "bugs": {
-    "url": "https://github.com/Bitreel-Hq/sql-quest/issues"
+    "url": "https://github.com/Xavier577/sql-quest/issues"
   },
-  "homepage": "https://github.com/Bitreel-Hq/sql-quest#readme",
+  "homepage": "https://github.com/Xavier577/sql-quest#readme",
   "scripts": {
     "build": "tsc"
   },
