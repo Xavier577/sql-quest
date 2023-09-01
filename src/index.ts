@@ -53,6 +53,8 @@ export type NamedParamsObj = { [name: string]: any }
 export interface SqlQuest {
     connect(): Promise<void>
 
+    get tx(): any
+
     any(query: string, payload?: any[] | NamedParamsObj, correlationId?: any): Promise<any>
 
     one(query: string, payload?: any[] | NamedParamsObj, correlationId?: string): Promise<any>;
@@ -100,6 +102,7 @@ class SqlQuestImpl implements SqlQuest {
         }
         return instance;
     }
+
 
     public async connect(): Promise<void> {
            try {
@@ -296,4 +299,6 @@ export default function sqlQuestFactory(options: SqlQuestOptions): SqlQuest {
 
     return sqlQuest
 }
+
+
 
